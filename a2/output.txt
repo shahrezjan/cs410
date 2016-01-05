@@ -1,0 +1,18 @@
+aaa
+invalid option -- '_'
+Try 'ls --help' for more information.
+ths
+-rw-rw-r--. 1 herstli ugrad  2281 Nov 14 23:00 find_paths.c
+-rw-rw-r--. 1 herstli ugrad   328 Nov 14 23:00 Makefile
+-rwxr-xr-x. 1 herstli ugrad 18392 Nov 17 11:04 myshell
+-rw-rw-r--. 1 herstli ugrad  8761 Nov 14 23:00 myshell.c
+-rw-------. 1 herstli ugrad     0 Nov 17 11:04 output.txt
+-rw-rw-r--. 1 herstli ugrad  1334 Nov 14 23:00 README.txt
+-rw-rw-r--. 1 herstli ugrad   149 Nov 17 10:07 test1
+-rw-rw-r--. 1 herstli ugrad    83 Nov 17 10:08 test2
+-rwxr-xr-x. 1 herstli ugrad 13469 Nov 17 11:04 tsp_p
+-rw-rw-r--. 1 herstli ugrad  3479 Nov 14 23:00 tsp_p.c
+-rwxr-xr-x. 1 herstli ugrad  8828 Nov 17 11:04 tspsort
+-rw-rw-r--. 1 herstli ugrad  1839 Nov 17 10:49 tspsort.c
+-rwxr-xr-x. 1 herstli ugrad 13696 Nov 17 11:04 tsp_t
+-rw-rw-r--. 1 herstli ugrad  3987 Nov 14 23:00 tsp_t.c

@@ -1,0 +1,83 @@
+Name: Hwa-seung Erstling
+BUID: U36770098
+CS410 - Assignment 3
+
+Run "make all" to create executables:
+	webserv
+	my-histogram
+
+Run "make clean" to delete executables and temporary files.
+
+Source files in directory:
+	webserv.c			// Webserver
+	my-histogram.c		// Histogram data generator
+	runhistplot.cgi		// Script that runs my-histogram into gnuplot
+	rawdatahtml.cgi		// Script that demonstrates processing raw data into html
+						// 		(see below)
+
+---------------------------------------------------------
+ Run 'webserv'
+---------------------------------------------------------
+
+Example:	./webserv 8080
+
+			--> Starts webserver on port 8080
+
+---------------------------------------------------------
+ Run 'my-histogram'
+---------------------------------------------------------
+
+Example:	./webserv 8080
+
+			--> Starts webserver on port 8080
+
+---------------------------------------------------------
+Request for directory listing, html file or image file
+---------------------------------------------------------
+
+Example:	localhost:8080/directory_or_file_name
+
+			--> opens up directory 'somedir' in same directory as server
+
+
+---------------------------------------------------------
+Request for cgi script
+---------------------------------------------------------
+
+**NOTE: Arguments are passed to cgi script in order they are received in html request.
+		Varible names do not matter but cannot be left blank.
+
+
+Example:	localhost:8080/some_script.cgi?var1=arg1&var2=arg2
+
+			--> Runs cgi script passing arg1 as the first argument
+				and arg2 as the second argument
+
+
+---------------------------------------------------------
+Request for perl script to process data into html
+---------------------------------------------------------
+
+**NOTE: I created a test script (rawdatahtml.cgi) that demonstrates taking in
+		raw data as command line arguments, and processes the data into html.
+		It simply displays incrementing numbers in a specified html font size.
+
+
+Example:	localhost:8080/rawdatahtml.cgi?var1=4&var2=50&var3=20
+
+			--> Count 20 numbers (var3) starting from 50 (var2)
+				and output values in html font size 4 (var1)
+
+
+---------------------------------------------------------
+Request for dynamically created image using gnuplot
+---------------------------------------------------------
+
+**NOTE: Files in same directory as server should EXCLUDE '/' at the beginning.
+		Patterns should EXCLUDE quotation marks
+
+Example:	localhost:8080/runhistplot.cgi?var1=textfile&var2=pattern1&var3=pattern2
+
+			--> Display histogram showing frequency of 'pattern1'
+				and 'pattern2' in 'textfile'
+

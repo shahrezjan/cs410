@@ -1,0 +1,66 @@
+Hwa-seung Erstling (U36770098)
+CS410 - A3 Optional
+
+- Run "make all" to create executables 'arduinoGetTemp' and 'webserv'
+- Run "make clean" to delete executables and temporary files
+
+Files:
+	arduinoGetTemp.c		// CODE TO RUN ON SERVER
+	arduinotemp.cgi			// Script that calls arduinoGetTemp and outputs to webclient
+	webserv.c			// webserver
+	tempStation/
+		tempStation.ino		// CODE TO RUN ON ARDUINO
+	Makefile
+	README
+
+// -----------------------------------
+// ARDUINO TEMPERATURE STATION
+// ----------------------------------- 
+
+Base functionality:
+The arduino reads from the temperature sensor, converts the value
+into Farhenheit, then displays the two most significant digits on
+a multi-digit 7-segment display (i.e. '89.23' will show '0089').
+
+Webserver control:
+Can get a 'request' through a serial communication to read the
+current temperature and send it back to serial port. For this project,
+I've created a simple executable that sends this 'request' (as a designated
+char value interpreted by the arduino) and prints returned weather data
+to standard output. Also, I've created a cgi script that works with my
+webserver to call this executable and output the result in a web-client.
+
+Challenges and solutions:
+The biggest challenege was handling an asynchronous event (request to have
+arduino print weather data to serial output), while constantly displaying
+the temperature on the 7-segment display. Not all of these segments can be
+controlled at once, so it requires multiplexing that cannot be delayed.
+I solved this by creating a serialEvent object that can detect when data
+is received from serial port, and execute the printing of weather.
+Another big issue was sending data to the arduino for the first time on
+start up. I was reading a lot of junk data in the serial output after
+first communicating with the arduino. To avoid this issue, a request for
+weather output is re-executed ONLY after the first request sent (see  line 92
+in arduinoGetTemp.c). Subsequent requests work as expected.
+
+Example Usage:
+
+	1) Plug in arduino-temperature-station device
+	    --> It will immediately start displaying temperature in "real-time"
+
+	2a) Run the command "./arduinoGetTemp"
+	    --> Will send a request to arduino to send temperature to serial output
+		then will read from serial output to standard output
+
+		OR
+
+	2b) Start webserver "./webserv 8080"
+		and
+	    Call the cgi script "localhost:8080/arduinotemp.cgi"
+	    --> will display the weather in a web-client
+
+Devices used:
+- Arduino R3
+- 4-digit 7-segment display
+- LM35 Temperature sensor
+- 8 resistors (220 ohm)
